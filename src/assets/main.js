@@ -1,4 +1,4 @@
-const catApi = "https://api.thecatapi.com/v1/images/search?limit=3";
+const catApi = "https://api.thecatapi.com/v1/images/search?limit=3&api_key=live_Q0wfPKfjVPpcy89sxD4FNgg1Nxw1MDX8prBvweFoEO5Jhv7YUSNzwCJEOQdNZ9Ms";
 
 const btn = document.querySelector("button");
 btn.addEventListener("click", getCat);
