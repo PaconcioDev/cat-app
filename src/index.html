@@ -10,12 +10,36 @@
   <body>
     <div id="main-section">
       <h1>Random Cats</h1>
-      <section id="images-section">
-        <img id="img1" alt="Random Cat" />
-        <img id="img2" alt="Random Cat" />
-        <img id="img3" alt="Random Cat" />
+      <section id="random-images-section">
+        <div class="random-image-container">
+          <img id="img1" alt="Random Cat" />
+          <button class="save-btn">⭐</button>
+        </div>
+        <div class="random-image-container">
+          <img id="img2" alt="Random Cat" />
+          <button class="save-btn">⭐</button>
+        </div>
+        <div class="random-image-container">
+          <img id="img3" alt="Random Cat" />
+          <button class="save-btn">⭐</button>
+        </div>
+        <div class="random-image-container">
+          <img id="img4" alt="Random Cat" />
+          <button class="save-btn">⭐</button>
+        </div>
+        <div class="random-image-container">
+          <img id="img5" alt="Random Cat" />
+          <button class="save-btn">⭐</button>
+        </div>
       </section>
-      <button>Reload</button>
+      <button id="reload-btn">Reload</button>
+      <section id="favorite-images">
+        <h2>Favorites</h2>
+        <div>
+          <img id="img2" alt="Favorite Cat" />
+          <button class="unsave-btn">-</button>
+        </div>
+      </section>
     </div>
     <script src="./assets/main.js"></script>
   </body>

@@ -1,7 +1,7 @@
-const catApi = "https://api.thecatapi.com/v1/images/search?limit=3&api_key=live_Q0wfPKfjVPpcy89sxD4FNgg1Nxw1MDX8prBvweFoEO5Jhv7YUSNzwCJEOQdNZ9Ms";
+const catApi = "https://api.thecatapi.com/v1/images/search?limit=5&api_key=live_Q0wfPKfjVPpcy89sxD4FNgg1Nxw1MDX8prBvweFoEO5Jhv7YUSNzwCJEOQdNZ9Ms";
 
-const btn = document.querySelector("button");
-btn.addEventListener("click", getCat);
+const reloadBtn = document.querySelector("#reload-btn");
+reloadBtn.addEventListener("click", getCat);
 
 async function getCat() {
   try {
@@ -11,9 +11,13 @@ async function getCat() {
     const img1 = document.querySelector("#img1");
     const img2 = document.querySelector("#img2");
     const img3 = document.querySelector("#img3");
+    const img4 = document.querySelector("#img4");
+    const img5 = document.querySelector("#img5");
     img1.src = data[0].url;
     img2.src = data[1].url;
     img3.src = data[2].url;
+    img4.src = data[3].url;
+    img5.src = data[4].url;
   } catch (error) {
     return new Error(error);
   }
