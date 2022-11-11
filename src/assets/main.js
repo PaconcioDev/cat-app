@@ -6,14 +6,16 @@ const API_KEY =
 const spanError = document.querySelector("#error");
 const reloadBtn = document.querySelector("#reload-btn");
 
+let catsResponse = undefined;
+let hasEvent = false;
+
 reloadBtn.addEventListener("click", getCats);
 
 async function getCats() {
   try {
     const res = await fetch(`${catApi}&${API_KEY}`);
-    const data = await res.json();
-    console.log(data); //! This will return an array of 5 objects
-    console.log(`This i1111s the id of data 2 ${data[2].id}`);
+    catsResponse = await res.json();
+    console.log(catsResponse); //! This will return an array of 5 objects
     const img1 = document.querySelector("#img1");
     const img2 = document.querySelector("#img2");
     const img3 = document.querySelector("#img3");
@@ -27,20 +29,20 @@ async function getCats() {
     const saveBtn5 = document.querySelector("#save-btn5");
 
     //* If we dont put the saveFavoriteCats function into another funtion, everytime that getCats is called saveFavoriteCats is called too
-    saveBtn1.addEventListener("click", () => saveFavoriteCats(data[0].id));
-    saveBtn2.addEventListener("click", () => saveFavoriteCats(data[1].id));
-    saveBtn3.addEventListener("click", () => {
-      saveFavoriteCats(data[2].id)
-      console.log(`This is the id of data 2 ${data[2].id}`);
-    });
-    saveBtn4.addEventListener("click", () => saveFavoriteCats(data[3].id));
-    saveBtn5.addEventListener("click", () => saveFavoriteCats(data[4].id));
+    if (!hasEvent) {
+      saveBtn1.addEventListener("click", () => saveFavoriteCats(catsResponse[0].id));
+      saveBtn2.addEventListener("click", () => saveFavoriteCats(catsResponse[1].id));
+      saveBtn3.addEventListener("click", () => saveFavoriteCats(catsResponse[2].id));
+      saveBtn4.addEventListener("click", () => saveFavoriteCats(catsResponse[3].id));
+      saveBtn5.addEventListener("click", () => saveFavoriteCats(catsResponse[4].id));
+      hasEvent = true;
+    } 
 
-    img1.src = data[0].url;
-    img2.src = data[1].url;
-    img3.src = data[2].url;
-    img4.src = data[3].url;
-    img5.src = data[4].url;
+    img1.src = catsResponse[0].url;
+    img2.src = catsResponse[1].url;
+    img3.src = catsResponse[2].url;
+    img4.src = catsResponse[3].url;
+    img5.src = catsResponse[4].url;
   } catch (error) {
     const res = await fetch(`${catApi}&${API_KEY}`);
     console.log(error);
