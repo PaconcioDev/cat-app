@@ -24,10 +24,11 @@ h1 {
   font-size: 52px;
 }
 
-#random-images-section {
+#random-images-section, #favorite-images {
   display: grid;
   grid-template-columns: repeat(5, 250px);
   grid-column-gap: 24px;
+  grid-row-gap: 12px;
 }
 
 img {
@@ -38,7 +39,7 @@ img {
   border-radius: 4px;
 }
 
-.save-btn {
+.save-btn, .unsave-btn {
   cursor: pointer;
   background-color: var(--greeny-gray);
   border: 4px solid var(--greeny-gray);
