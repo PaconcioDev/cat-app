@@ -7,6 +7,7 @@ async function getCat() {
   try {
     const res = await fetch(catApi);
     const data = await res.json();
+    console.log(data) //! This will return an array of 3 objects
     const img1 = document.querySelector("#img1");
     const img2 = document.querySelector("#img2");
     const img3 = document.querySelector("#img3");
