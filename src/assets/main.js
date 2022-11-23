@@ -1,19 +1,22 @@
 const catApi = "https://api.thecatapi.com/v1/images/search?limit=5";
 const catApiFavorites = "https://api.thecatapi.com/v1/favourites";
+const catApiUpload = "https://api.thecatapi.com/v1/images/upload";
 const API_KEY =
-  "api_key=live_Q0wfPKfjVPpcy89sxD4FNgg1Nxw1MDX8prBvweFoEO5Jhv7YUSNzwCJEOQdNZ9Ms";
+  "live_Q0wfPKfjVPpcy89sxD4FNgg1Nxw1MDX8prBvweFoEO5Jhv7YUSNzwCJEOQdNZ9Ms";
 
 const spanError = document.querySelector("#error");
 const reloadBtn = document.querySelector("#reload-btn");
+const submitBtn = document.querySelector("#submit-btn");
 
 let catsResponse = undefined;
 let hasEvent = false;
 
 reloadBtn.addEventListener("click", getCats);
+submitBtn.addEventListener("click", uploadCat);
 
 async function getCats() {
   try {
-    const res = await fetch(`${catApi}&${API_KEY}`);
+    const res = await fetch(`${catApi}`);
     catsResponse = await res.json();
     console.log(catsResponse); //! This will return an array of 5 objects
     const img1 = document.querySelector("#img1");
@@ -30,13 +33,23 @@ async function getCats() {
 
     //* If we dont put the saveFavoriteCats function into another funtion, everytime that getCats is called saveFavoriteCats is called too
     if (!hasEvent) {
-      saveBtn1.addEventListener("click", () => saveFavoriteCats(catsResponse[0].id));
-      saveBtn2.addEventListener("click", () => saveFavoriteCats(catsResponse[1].id));
-      saveBtn3.addEventListener("click", () => saveFavoriteCats(catsResponse[2].id));
-      saveBtn4.addEventListener("click", () => saveFavoriteCats(catsResponse[3].id));
-      saveBtn5.addEventListener("click", () => saveFavoriteCats(catsResponse[4].id));
+      saveBtn1.addEventListener("click", () =>
+        saveFavoriteCats(catsResponse[0].id)
+      );
+      saveBtn2.addEventListener("click", () =>
+        saveFavoriteCats(catsResponse[1].id)
+      );
+      saveBtn3.addEventListener("click", () =>
+        saveFavoriteCats(catsResponse[2].id)
+      );
+      saveBtn4.addEventListener("click", () =>
+        saveFavoriteCats(catsResponse[3].id)
+      );
+      saveBtn5.addEventListener("click", () =>
+        saveFavoriteCats(catsResponse[4].id)
+      );
       hasEvent = true;
-    } 
+    }
 
     img1.src = catsResponse[0].url;
     img2.src = catsResponse[1].url;
@@ -44,16 +57,49 @@ async function getCats() {
     img4.src = catsResponse[3].url;
     img5.src = catsResponse[4].url;
   } catch (error) {
-    const res = await fetch(`${catApi}&${API_KEY}`);
+    const res = await fetch(`${catApi}`);
     console.log(error);
     spanError.innerText = `Unexpected error: ${res.status}`;
     throw new Error(error);
   }
 }
 
+async function uploadCat() {
+  const form = document.querySelector("#upload-form");
+  const myFormData = new FormData(form);
+
+  console.log(myFormData.get("file"));
+
+  const res = await fetch(`${catApiUpload}`, {
+    method: "POST",
+    headers: {
+      "X-API-KEY": API_KEY,
+    },
+    body: myFormData,
+  })
+  const data = await res.json();
+
+  try {
+    console.log ("Photo uploaded");
+    console.log({data})
+    console.log(data.url);
+    saveFavoriteCats(data.id)
+  } catch (error) {
+    spanError.innerHTML = `There was an error ${res.status} ${data.message}`
+    console.log({data})
+    throw new Error(error)
+  }
+
+}
+
 async function getFavoriteCats() {
   try {
-    const res = await fetch(`${catApiFavorites}?${API_KEY}`);
+    const res = await fetch(`${catApiFavorites}`, {
+      method: "GET",
+      headers: {
+        "X-API-KEY": API_KEY,
+      },
+    });
     const data = await res.json();
     console.log(data); //! This will return an array of x objects
 
@@ -75,7 +121,12 @@ async function getFavoriteCats() {
       section.appendChild(article);
     });
   } catch (error) {
-    const res = await fetch(`${catApiFavorites}?${API_KEY}`);
+    const res = await fetch(`${catApiFavorites}`, {
+      method: "GET",
+      headers: {
+        "X-API-KEY": API_KEY,
+      },
+    });
     console.log(error);
     spanError.innerText = `Unexpected error: ${res.status}`;
     throw new Error(error);
@@ -84,10 +135,11 @@ async function getFavoriteCats() {
 
 async function saveFavoriteCats(id) {
   try {
-    const res = await fetch(`${catApiFavorites}?${API_KEY}`, {
+    const res = await fetch(`${catApiFavorites}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-API-KEY": API_KEY,
       },
       body: JSON.stringify({
         image_id: id,
@@ -102,8 +154,11 @@ async function saveFavoriteCats(id) {
 
 async function deleteFavoriteCat(id) {
   try {
-    const res = await fetch(`${catApiFavorites}/${id}?${API_KEY}`, {
+    const res = await fetch(`${catApiFavorites}/${id}`, {
       method: "DELETE",
+      headers: {
+        "X-API-KEY": API_KEY,
+      },
     });
     console.log("daleted");
     getFavoriteCats();
