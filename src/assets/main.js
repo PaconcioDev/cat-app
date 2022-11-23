@@ -4,6 +4,14 @@ const catApiUpload = "https://api.thecatapi.com/v1/images/upload";
 const API_KEY =
   "live_Q0wfPKfjVPpcy89sxD4FNgg1Nxw1MDX8prBvweFoEO5Jhv7YUSNzwCJEOQdNZ9Ms";
 
+//? Axios test
+const newAxiosInstance = axios.create({
+  baseURL: "https://api.thecatapi.com/v1",
+  headers: {
+    "X-API-KEY": API_KEY,
+  },
+});
+
 const spanError = document.querySelector("#error");
 const reloadBtn = document.querySelector("#reload-btn");
 const submitBtn = document.querySelector("#submit-btn");
@@ -76,20 +84,19 @@ async function uploadCat() {
       "X-API-KEY": API_KEY,
     },
     body: myFormData,
-  })
+  });
   const data = await res.json();
 
   try {
-    console.log ("Photo uploaded");
-    console.log({data})
+    console.log("Photo uploaded");
+    console.log({ data });
     console.log(data.url);
-    saveFavoriteCats(data.id)
+    saveFavoriteCats(data.id);
   } catch (error) {
-    spanError.innerHTML = `There was an error ${res.status} ${data.message}`
-    console.log({data})
-    throw new Error(error)
+    spanError.innerHTML = `There was an error ${res.status} ${data.message}`;
+    console.log({ data });
+    throw new Error(error);
   }
-
 }
 
 async function getFavoriteCats() {
@@ -135,21 +142,30 @@ async function getFavoriteCats() {
 
 async function saveFavoriteCats(id) {
   try {
-    const res = await fetch(`${catApiFavorites}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-API-KEY": API_KEY,
-      },
-      body: JSON.stringify({
-        image_id: id,
-      }),
+    const res = await newAxiosInstance.post(`/favourites`, {
+      image_id: id,
     });
-    console.log("saved");
+    console.log("Cat Saved");
     getFavoriteCats();
   } catch (error) {
     throw new Error(error);
   }
+  // try {
+  //   const res = await fetch(`${catApiFavorites}`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       "X-API-KEY": API_KEY,
+  //     },
+  //     body: JSON.stringify({
+  //       image_id: id,
+  //     }),
+  //   });
+  //   console.log("saved");
+  //   getFavoriteCats();
+  // } catch (error) {
+  //   throw new Error(error);
+  // }
 }
 
 async function deleteFavoriteCat(id) {
