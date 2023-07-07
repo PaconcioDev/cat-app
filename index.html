@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Api</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h1 class="title">Cute Cats API</h1>
+    <main>
+      <h2 class="subtitle">Random Cats</h2>
+      <section class="random-cats">
+        <span class="random-cats__error"></span>
+        <div class="random-cats__container">
+          <article>
+            <img id="cat-image1" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn1">😻</button>
+          </article>
+          <article>
+            <img id="cat-image2" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn2">😻</button>
+          </article>
+          <article>
+            <img id="cat-image3" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn3">😻</button>
+          </article>
+          <article>
+            <img id="cat-image4" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn4">😻</button>
+          </article>
+          <article>
+            <img id="cat-image5" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn5">😻</button>
+          </article>
+          <article>
+            <img id="cat-image6" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn6">😻</button>
+          </article>
+        </div>
+      </section>
+      <button class="reload-btn">Other Cats!!</button>
+      <h2 class="subtitle">Favorite Cats</h2>
+      <section class="favorite-cats">
+        <span class="favorite-cats__error"></span>
+        <div class="favorite-cats__container">
+          
+        </div>
+      </section>
+      <h2 class="subtitle">Upload your cat</h2>
+      <section class="upload-cats">
+        <form id="uploading-form">
+          <input id="file" type="file" name="file"/>
+          <button class="upload-btn" type="button">Upload cat</button>
+        </form>
+      </section>
+    </main>
+    <script type="module" src="assets/main.js"></script>
+  </body>
+</html>
