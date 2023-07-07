@@ -2,50 +2,59 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat Api</title>
     <link rel="stylesheet" href="index.css" />
-    <title>Random Cats</title>
   </head>
   <body>
-    <div id="main-section">
-      <h1>Random Cats</h1>
-      <span id="error"></span>
-      <section id="random-images-section">
-        <div class="random-image-container">
-          <img id="img1" alt="Random Cat" />
-          <button class="save-btn" id="save-btn1">⭐</button>
-        </div>
-        <div class="random-image-container">
-          <img id="img2" alt="Random Cat" />
-          <button class="save-btn" id="save-btn2">⭐</button>
-        </div>
-        <div class="random-image-container">
-          <img id="img3" alt="Random Cat" />
-          <button class="save-btn" id="save-btn3">⭐</button>
-        </div>
-        <div class="random-image-container">
-          <img id="img4" alt="Random Cat" />
-          <button class="save-btn" id="save-btn4">⭐</button>
-        </div>
-        <div class="random-image-container">
-          <img id="img5" alt="Random Cat" />
-          <button class="save-btn" id="save-btn5">⭐</button>
+    <h1 class="title">Cute Cats API</h1>
+    <main>
+      <h2 class="subtitle">Random Cats</h2>
+      <section class="random-cats">
+        <span class="random-cats__error"></span>
+        <div class="random-cats__container">
+          <article>
+            <img id="cat-image1" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn1">😻</button>
+          </article>
+          <article>
+            <img id="cat-image2" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn2">😻</button>
+          </article>
+          <article>
+            <img id="cat-image3" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn3">😻</button>
+          </article>
+          <article>
+            <img id="cat-image4" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn4">😻</button>
+          </article>
+          <article>
+            <img id="cat-image5" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn5">😻</button>
+          </article>
+          <article>
+            <img id="cat-image6" class="cat-image" alt="Random Cat Image" />
+            <button class="save-cat-btn" id="save-cat-btn6">😻</button>
+          </article>
         </div>
       </section>
-      <button id="reload-btn">Reload</button>
-      <section id="upload-cat">
-        <h2>Upload your cat</h2>
-        <form id="upload-form">
+      <button class="reload-btn">Other Cats!!</button>
+      <h2 class="subtitle">Favorite Cats</h2>
+      <section class="favorite-cats">
+        <span class="favorite-cats__error"></span>
+        <div class="favorite-cats__container">
+          
+        </div>
+      </section>
+      <h2 class="subtitle">Upload your cat</h2>
+      <section class="upload-cats">
+        <form id="uploading-form">
           <input id="file" type="file" name="file"/>
-          <button id="submit-btn" type="button">Upload</button>
+          <button class="upload-btn" type="button">Upload cat</button>
         </form>
       </section>
-      <h2>Favorites</h2>
-      <section id="favorite-images">
-      </section>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./assets/main.js"></script>
+    </main>
+    <script type="module" src="assets/main.js"></script>
   </body>
 </html>
